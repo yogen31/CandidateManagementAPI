@@ -5,6 +5,6 @@ namespace WebApplication1.Services.Interface
 {
     public interface ICandidateService
     {
-        Task<CandidateViewModel> AddOrUpdateCandidate(CandidateViewModel candidate); 
+        Task<CandidateRequest> AddOrUpdateCandidate(CandidateRequest candidate); 
     }
 }

@@ -13,7 +13,7 @@ namespace WebApplication1.Services
         {
             _candidateRepository = candidateRepository;
         }
-        public async Task<CandidateViewModel> AddOrUpdateCandidate(CandidateViewModel candidate)
+        public async Task<CandidateRequest> AddOrUpdateCandidate(CandidateRequest candidate)
         {
             var existingCandidate = await _candidateRepository.GetCandidateByEmail(candidate.Email);
 
