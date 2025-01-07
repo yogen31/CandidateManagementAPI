@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Database.Context;
+using WebApplication1.Repository;
+using WebApplication1.Repository.Interface;
+using WebApplication1.Services;
+using WebApplication1.Services.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +17,8 @@ builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<CandidateManagementAPIDbContext>(options => options.UseSqlServer(
     connectionString));
+builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
+builder.Services.AddScoped<ICandidateService, CandidateService>();
 
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
