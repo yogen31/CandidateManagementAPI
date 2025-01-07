@@ -5,6 +5,7 @@ namespace WebApplication1.Database.Context
 {
     public class CandidateManagementAPIDbContext : DbContext
     {
+        public CandidateManagementAPIDbContext(DbContextOptions options) : base(options) { }
         public DbSet<Candidate> Candidates { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -14,7 +15,6 @@ namespace WebApplication1.Database.Context
                 .IsUnique();
 
             base.OnModelCreating(modelBuilder);
-        }
         }
     }
 }
