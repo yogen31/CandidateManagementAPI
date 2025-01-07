@@ -6,16 +6,11 @@ using WebApplication1.ViewModels;
 
 namespace WebApplication1.Services
 {
-    public class CandidateService : ICandidateService
+    public class CandidateService(ICandidateRepository candidateRepository) : ICandidateService
     {
-        private readonly ICandidateRepository _candidateRepository;
-        public CandidateService(ICandidateRepository candidateRepository)
-        {
-            _candidateRepository = candidateRepository;
-        }
         public async Task<CandidateRequest> AddOrUpdateCandidate(CandidateRequest candidate)
         {
-            var existingCandidate = await _candidateRepository.GetCandidateByEmail(candidate.Email);
+            var existingCandidate = await candidateRepository.GetCandidateByEmail(candidate.Email);
 
             if (existingCandidate != null)
             {
@@ -27,7 +22,7 @@ namespace WebApplication1.Services
                 existingCandidate.GitHubURL = candidate.GitHubURL;
                 existingCandidate.FreeComment = candidate.FreeComment;
 
-                await _candidateRepository.UpdateCandidate(existingCandidate);
+                await candidateRepository.UpdateCandidate(existingCandidate);
             }
             else
             {
@@ -42,7 +37,7 @@ namespace WebApplication1.Services
                     GitHubURL = candidate.GitHubURL,
                     FreeComment = candidate.FreeComment
                 };
-                await _candidateRepository.AddCandidate(newCandidate);
+                await candidateRepository.AddCandidate(newCandidate);
             }
 
             return candidate;
