@@ -4,7 +4,6 @@ using CandidateManagementAPI.utils;
 using CandidateManagementAPI.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
 using Moq;
 
 namespace CandidateManagementApiTest
@@ -18,6 +17,7 @@ namespace CandidateManagementApiTest
             _candidateServiceMock = new Mock<ICandidateService>();
         }
 
+        #region Add or Update Candiate Test
         [Fact]
         public async void AddOrUpdateCandidate_Candidate()
         {
@@ -39,6 +39,9 @@ namespace CandidateManagementApiTest
             Assert.Equal(candidateList[2].Email, response.Entity.Email);
             Assert.True(candidateList[2].Email == response.Entity.Email);
         }
+        #endregion
+
+        #region Validate Update
         [Fact]
         public async void AddOrUpdateCandidate_ValidUpdate_ReturnsOk()
         {
@@ -61,7 +64,9 @@ namespace CandidateManagementApiTest
             Assert.Equal("Candidate information saved successfully.", response.ReturnMessage);
             Assert.Equal(StatusCodes.Status200OK, response.Status);
         }
+        #endregion
 
+        #region Validate Add
         [Fact]
         public async void AddOrUpdateCandidate_ValidAdd_ReturnsOk()
         {
@@ -95,7 +100,9 @@ namespace CandidateManagementApiTest
             Assert.Equal("Candidate information saved successfully.", response.ReturnMessage);
             Assert.Equal(StatusCodes.Status200OK, response.Status);
         }
+        #endregion
 
+        #region Validate Null Request
         [Fact]
         public async void AddOrUpdateCandidate_NullRequest_ReturnsBadRequest()
         {
@@ -114,8 +121,9 @@ namespace CandidateManagementApiTest
             Assert.Equal("Candidate data is required.", response.ReturnMessage);
             Assert.Equal(StatusCodes.Status400BadRequest, response.Status);
         }
+        #endregion
 
-
+        #region Validate Not Found when Service returns Null
         [Fact]
         public async void AddOrUpdateCandidate_ServiceReturnsNull_ReturnsNotFound()
         {
@@ -136,7 +144,9 @@ namespace CandidateManagementApiTest
             Assert.Equal("Cannot save candidate information", response.ReturnMessage);
             Assert.Equal(StatusCodes.Status404NotFound, response.Status);
         }
+        #endregion
 
+        #region Get Candidates List
         private List<CandidateRequest> GetCandidatesData()
         {
             var candidatesData = new List<CandidateRequest>
@@ -178,5 +188,6 @@ namespace CandidateManagementApiTest
 
             return candidatesData!;
         }
+        #endregion
     }
 }
