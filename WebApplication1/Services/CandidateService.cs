@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WebApplication1.Model;
-using WebApplication1.Repository.Interface;
-using WebApplication1.Services.Interface;
-using WebApplication1.ViewModels;
+using CandidateManagementAPI.Model;
+using CandidateManagementAPI.Repository.Interface;
+using CandidateManagementAPI.Services.Interface;
+using CandidateManagementAPI.ViewModels;
 
-namespace WebApplication1.Services
+namespace CandidateManagementAPI.Services
 {
     public class CandidateService(ICandidateRepository candidateRepository) : ICandidateService
     {

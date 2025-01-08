@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WebApplication1.Database.Context;
-using WebApplication1.Model;
-using WebApplication1.Repository.Interface;
+using CandidateManagementAPI.Database.Context;
+using CandidateManagementAPI.Model;
+using CandidateManagementAPI.Repository.Interface;
 
-namespace WebApplication1.Repository
+namespace CandidateManagementAPI.Repository
 {
     public class CandidateRepository(CandidateManagementAPIDbContext context) : ICandidateRepository
     {

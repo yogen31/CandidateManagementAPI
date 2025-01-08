@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WebApplication1.Model;
+using CandidateManagementAPI.Model;
 
-namespace WebApplication1.Database.Context
+namespace CandidateManagementAPI.Database.Context
 {
     public class CandidateManagementAPIDbContext : DbContext
     {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebApplication1.Model
+namespace CandidateManagementAPI.Model
 {
     public class Candidate
     {

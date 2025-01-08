@@ -1,7 +1,7 @@
-﻿using WebApplication1.Model;
-using WebApplication1.ViewModels;
+﻿using CandidateManagementAPI.Model;
+using CandidateManagementAPI.ViewModels;
 
-namespace WebApplication1.Services.Interface
+namespace CandidateManagementAPI.Services.Interface
 {
     public interface ICandidateService
     {

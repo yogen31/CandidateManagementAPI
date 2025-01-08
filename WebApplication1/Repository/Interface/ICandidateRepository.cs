@@ -1,6 +1,6 @@
-﻿using WebApplication1.Model;
+﻿using CandidateManagementAPI.Model;
 
-namespace WebApplication1.Repository.Interface
+namespace CandidateManagementAPI.Repository.Interface
 {
     public interface ICandidateRepository
     {

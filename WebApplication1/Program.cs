@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using WebApplication1.Database.Context;
-using WebApplication1.Repository;
-using WebApplication1.Repository.Interface;
-using WebApplication1.Services;
-using WebApplication1.Services.Interface;
+using CandidateManagementAPI.Database.Context;
+using CandidateManagementAPI.Repository;
+using CandidateManagementAPI.Repository.Interface;
+using CandidateManagementAPI.Services;
+using CandidateManagementAPI.Services.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 

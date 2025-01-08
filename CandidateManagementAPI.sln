@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{642A1BD8-3AA1-4F9E-9B7D-53F34DC5392F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CanditateManagementAPI", "WebApplication1\CanditateManagementAPI.csproj", "{642A1BD8-3AA1-4F9E-9B7D-53F34DC5392F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandidateManagementApiTest", "CandidateManagementApiTest\CandidateManagementApiTest.csproj", "{F39E1551-8093-4F5C-96DD-6B211134C91C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{642A1BD8-3AA1-4F9E-9B7D-53F34DC5392F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{642A1BD8-3AA1-4F9E-9B7D-53F34DC5392F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{642A1BD8-3AA1-4F9E-9B7D-53F34DC5392F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F39E1551-8093-4F5C-96DD-6B211134C91C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F39E1551-8093-4F5C-96DD-6B211134C91C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F39E1551-8093-4F5C-96DD-6B211134C91C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F39E1551-8093-4F5C-96DD-6B211134C91C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

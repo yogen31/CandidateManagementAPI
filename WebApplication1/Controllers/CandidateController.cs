@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using WebApplication1.Model;
-using WebApplication1.Services.Interface;
-using WebApplication1.utils;
-using WebApplication1.ViewModels;
+﻿using Microsoft.AspNetCore.Mvc;
+using CandidateManagementAPI.Services.Interface;
+using CandidateManagementAPI.utils;
+using CandidateManagementAPI.ViewModels;
 
-namespace WebApplication1.Controllers
+namespace CandidateManagementAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

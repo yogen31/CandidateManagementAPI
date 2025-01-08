@@ -1,4 +1,4 @@
-﻿namespace WebApplication1.utils
+﻿namespace CandidateManagementAPI.utils
 {
     public class ResponseModel<T>
     {
