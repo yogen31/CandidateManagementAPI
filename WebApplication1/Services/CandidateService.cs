@@ -8,6 +8,7 @@ namespace CandidateManagementAPI.Services
 {
     public class CandidateService(ICandidateRepository candidateRepository) : ICandidateService
     {
+        #region Add or Update Candidate Service
         public async Task<CandidateRequest> AddOrUpdateCandidate(CandidateRequest candidate)
         {
             var existingCandidate = await candidateRepository.GetCandidateByEmail(candidate.Email);
@@ -42,5 +43,6 @@ namespace CandidateManagementAPI.Services
 
             return candidate;
         }
+        #endregion
     }
 }

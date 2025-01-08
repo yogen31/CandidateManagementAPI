@@ -6,7 +6,6 @@ namespace CandidateManagementAPI.Repository.Interface
     {
         Task<Candidate> AddCandidate(Candidate candidate);
         Task<Candidate> UpdateCandidate(Candidate candidate);
-        Task<Candidate?> GetCandidateById(int candidateId);
         Task<Candidate?> GetCandidateByEmail(string email);
     }
 }

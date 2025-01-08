@@ -9,6 +9,7 @@ namespace CandidateManagementAPI.Controllers
     [ApiController]
     public class CandidateController(ICandidateService candidateService) : ControllerBase
     {
+        #region Route to add or update candidate
         [HttpPost]
         public async Task<IActionResult> AddOrUpdateCandidate([FromBody] CandidateRequest request)
         {
@@ -35,12 +36,13 @@ namespace CandidateManagementAPI.Controllers
                 response.Status = StatusCodes.Status404NotFound;
                 return NotFound(response);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 response.ReturnMessage = ex.Message;
                 response.Status = StatusCodes.Status500InternalServerError;
                 return BadRequest(response);
             }
         }
+        #endregion
     }
 }

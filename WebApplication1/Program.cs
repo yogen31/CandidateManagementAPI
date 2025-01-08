@@ -17,6 +17,7 @@ builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<CandidateManagementAPIDbContext>(options => options.UseSqlServer(
     connectionString));
+builder.Services.AddMemoryCache();
 builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
 builder.Services.AddScoped<ICandidateService, CandidateService>();
 

@@ -12,12 +12,10 @@ namespace CandidateManagementApiTest
     public class CandidateManagementTest
     {
         private readonly Mock<ICandidateService> _candidateServiceMock;
-        private readonly IMemoryCache _cache;
 
         public CandidateManagementTest()
         {
             _candidateServiceMock = new Mock<ICandidateService>();
-            _cache = new MemoryCache(new MemoryCacheOptions());
         }
 
         [Fact]
