@@ -5,7 +5,12 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CanditateManagementAPI", "WebApplication1\CanditateManagementAPI.csproj", "{642A1BD8-3AA1-4F9E-9B7D-53F34DC5392F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandidateManagementApiTest", "CandidateManagementApiTest\CandidateManagementApiTest.csproj", "{F39E1551-8093-4F5C-96DD-6B211134C91C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CandidateManagementApiTest", "CandidateManagementApiTest\CandidateManagementApiTest.csproj", "{F39E1551-8093-4F5C-96DD-6B211134C91C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7E88DD52-3C47-4588-91EB-66E92F085DD8}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
