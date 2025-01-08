@@ -2,6 +2,7 @@ using CandidateManagementAPI.Controllers;
 using CandidateManagementAPI.Services.Interface;
 using CandidateManagementAPI.utils;
 using CandidateManagementAPI.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Moq;
@@ -40,13 +41,107 @@ namespace CandidateManagementApiTest
             Assert.Equal(candidateList[2].Email, response.Entity.Email);
             Assert.True(candidateList[2].Email == response.Entity.Email);
         }
+        [Fact]
+        public async void AddOrUpdateCandidate_ValidUpdate_ReturnsOk()
+        {
+            // Arrange
+            var candidate = GetCandidatesData()[0];
+            _candidateServiceMock.Setup(x => x.AddOrUpdateCandidate(candidate)).ReturnsAsync(candidate);
+            var candidateController = new CandidateController(_candidateServiceMock.Object);
+
+            // Act
+            var candidateResult = await candidateController.AddOrUpdateCandidate(candidate);
+
+            // Assert
+            Assert.NotNull(candidateResult);
+            var okResult = candidateResult as OkObjectResult;
+            Assert.NotNull(okResult);
+            var response = okResult.Value as ResponseModel<CandidateRequest>;
+            Assert.NotNull(response);
+            Assert.NotNull(response.Entity);
+            Assert.Equal(candidate.Email, response.Entity.Email);
+            Assert.Equal("Candidate information saved successfully.", response.ReturnMessage);
+            Assert.Equal(StatusCodes.Status200OK, response.Status);
+        }
+
+        [Fact]
+        public async void AddOrUpdateCandidate_ValidAdd_ReturnsOk()
+        {
+            // Arrange
+            var newCandidate = new CandidateRequest
+            {
+                FirstName = "New",
+                LastName = "Candidate",
+                Email = "new.candidate@gmail.com",
+                PhoneNumber = "123456789",
+                CallTimeInterval = "10-6",
+                LinkedInURL = "https://linkedin.com/new",
+                GitHubURL = "https://github.com/new",
+                FreeComment = "New candidate is available."
+            };
+
+            _candidateServiceMock.Setup(x => x.AddOrUpdateCandidate(newCandidate)).ReturnsAsync(newCandidate);
+            var candidateController = new CandidateController(_candidateServiceMock.Object);
+
+            // Act
+            var candidateResult = await candidateController.AddOrUpdateCandidate(newCandidate);
+
+            // Assert
+            Assert.NotNull(candidateResult);
+            var okResult = candidateResult as OkObjectResult;
+            Assert.NotNull(okResult);
+            var response = okResult.Value as ResponseModel<CandidateRequest>;
+            Assert.NotNull(response);
+            Assert.NotNull(response.Entity);
+            Assert.Equal(newCandidate.Email, response.Entity.Email);
+            Assert.Equal("Candidate information saved successfully.", response.ReturnMessage);
+            Assert.Equal(StatusCodes.Status200OK, response.Status);
+        }
+
+        [Fact]
+        public async void AddOrUpdateCandidate_NullRequest_ReturnsBadRequest()
+        {
+            // Arrange
+            var candidateController = new CandidateController(_candidateServiceMock.Object);
+
+            // Act
+            var candidateResult = await candidateController.AddOrUpdateCandidate(null);
+
+            // Assert
+            Assert.NotNull(candidateResult);
+            var badRequestResult = candidateResult as BadRequestObjectResult;
+            Assert.NotNull(badRequestResult);
+            var response = badRequestResult.Value as ResponseModel<CandidateRequest>;
+            Assert.NotNull(response);
+            Assert.Equal("Candidate data is required.", response.ReturnMessage);
+            Assert.Equal(StatusCodes.Status400BadRequest, response.Status);
+        }
+
+
+        [Fact]
+        public async void AddOrUpdateCandidate_ServiceReturnsNull_ReturnsNotFound()
+        {
+            // Arrange
+            var candidate = GetCandidatesData()[0];
+            _candidateServiceMock.Setup(x => x.AddOrUpdateCandidate(candidate)).ReturnsAsync((CandidateRequest?)null);
+            var candidateController = new CandidateController(_candidateServiceMock.Object);
+
+            // Act
+            var candidateResult = await candidateController.AddOrUpdateCandidate(candidate);
+
+            // Assert
+            Assert.NotNull(candidateResult);
+            var notFoundResult = candidateResult as NotFoundObjectResult;
+            Assert.NotNull(notFoundResult);
+            var response = notFoundResult.Value as ResponseModel<CandidateRequest>;
+            Assert.NotNull(response);
+            Assert.Equal("Cannot save candidate information", response.ReturnMessage);
+            Assert.Equal(StatusCodes.Status404NotFound, response.Status);
+        }
 
         private List<CandidateRequest> GetCandidatesData()
         {
-            const string cacheKey = "candidateList";
-            if (!_cache.TryGetValue(cacheKey, out List<CandidateRequest>? candidatesData))
-            {
-                candidatesData = new List<CandidateRequest>
+            var candidatesData = new List<CandidateRequest>
                 {
                     new CandidateRequest
                     {
@@ -82,12 +177,6 @@ namespace CandidateManagementApiTest
                         FreeComment = "Biraj is open to work On site!"
                     },
                 };
-
-                var cacheEntryOptions = new MemoryCacheEntryOptions()
-                    .SetSlidingExpiration(TimeSpan.FromMinutes(10));
-
-                _cache.Set(cacheKey, candidatesData, cacheEntryOptions);
-            }
 
             return candidatesData!;
         }
